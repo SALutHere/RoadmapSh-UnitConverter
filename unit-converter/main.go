@@ -27,7 +27,7 @@ func main() {
 	http.HandleFunc("/convert/weight", handleWeightConversion)
 	http.HandleFunc("/convert/temperature", handleTemperatureConversion)
 
-	println("Сервер запущен: http://localhost:8080")
+	println("Server is running: http://localhost:8080")
 	http.ListenAndServe(":8080", nil)
 }
 
@@ -37,7 +37,7 @@ func render(w http.ResponseWriter, r *http.Request, page string) {
 
 	tmpl, err := template.ParseFiles(base, content)
 	if err != nil {
-		http.Error(w, "ошибка шаблона: "+err.Error(), http.StatusInternalServerError)
+		http.Error(w, "template error: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
 

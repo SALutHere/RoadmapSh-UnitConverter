@@ -1,0 +1,23 @@
+{{ define "content" }}
+<h2 class="section-title">Length Converter</h2>
+
+<form class="converter-form" hx-post="/convert/length" hx-target="#result">
+    <label for="value">Enter the length to convert</label>
+    <input type="text" id="value" name="value" required placeholder="e.g. 12.5" autocomplete="off">
+
+    <label for="from">Unit to convert from</label>
+    <input type="text" id="from" name="from" required placeholder="e.g. m" autocomplete="off">
+
+    <label for="to">Unit to convert to</label>
+    <input type="text" id="to" name="to" required placeholder="e.g. km" autocomplete="off">
+
+    <label class="units-hint">Available units: mm, cm, m, km, in, ft, yd, mi</label>
+
+    <button type="submit">Convert</button>
+
+    <label for="result">Result</label>
+    <div id="result">
+        <input type="text" id="result-input" name="result" readonly placeholder="—" class="result-field">
+    </div>
+</form>
+{{ end }}

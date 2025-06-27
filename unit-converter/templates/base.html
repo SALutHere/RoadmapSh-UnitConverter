@@ -1,0 +1,53 @@
+{{ define "base" }}
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>Unit Converter</title>
+        <link rel="stylesheet" href="/static/style.css">
+        <script src="https://unpkg.com/htmx.org@2.0.5"></script>
+    </head>
+
+    <body>
+        <div class="app-wrapper">
+            <h1>UNIT CONVERTER</h1>
+
+            <nav id="nav">
+                <button
+                    class="tab-button {{if eq .ActiveTab "length"}}active{{end}}"
+                    hx-get="/length"
+                    hx-target="#content"
+                    hx-on:click="setActive(this)"
+                >Length</button>
+
+                <button
+                    class="tab-button {{if eq .ActiveTab "weight"}}active{{end}}"
+                    hx-get="/weight"
+                    hx-target="#content"
+                    hx-on:click="setActive(this)"
+                >Weight</button>
+
+                <button
+                    class="tab-button {{if eq .ActiveTab "temperature"}}active{{end}}"
+                    hx-get="/temperature"
+                    hx-target="#content"
+                    hx-on:click="setActive(this)"
+                >Temperature</button>
+            </nav>
+
+            <div id="content" class="content">
+                {{ template "content" . }}
+            </div>
+        </div>
+        
+        <script>
+            function setActive(el) {
+                document.querySelectorAll('.tab-button').forEach(btn => {
+                    btn.classList.remove('active')
+                })
+                el.classList.add('active')
+            }
+        </script>
+    </body>
+</html>
+{{ end }}
